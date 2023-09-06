@@ -23,6 +23,7 @@ app.get("/",(r,s)=>{
 // Start the server
 async function startServer() {
   try {
+    console.clear()
     await sequelize.sync({});
     console.log("Database connected successfully");
 
