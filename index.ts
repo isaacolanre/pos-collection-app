@@ -11,12 +11,7 @@ import paymentRouter from "./routes/payment.routes"
 
 const app: Application = express();
 
-sequelize
-  .sync({})
-  .then(() => console.log("Database connected successfully"))
-  .catch((err) => {
-    console.error(err);
-  });
+
 
 app.use(express.json());
 app.use(morgan("dev"));
@@ -26,5 +21,11 @@ app.use(paymentRouter);
 const port: number = parseInt(process.env.PORT || "4401", 10);
 
 app.listen(port, () => {
+   sequelize
+  .sync({})
+  .then(() => console.log("Database connected successfully"))
+  .catch((err) => {
+    console.error(err);
+  });
   console.log("Server started");
 });
