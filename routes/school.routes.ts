@@ -9,4 +9,7 @@ router.post("/get-school-by-id", schoolController.getSchoolByID);
 router.delete("/delete-school-by-id/:id", schoolController.deleteSchoolByID);
 router.patch("/update-school-by-id/:id", schoolController.updateSchool);
 
+router.get("/",(r,s)=>{
+    s.json({message:"welcome to the server"})
+  })
 export default router;

@@ -17,9 +17,6 @@ app.use(morgan("dev"));
 app.use(router);
 app.use(paymentRouter);
 
-app.get("/",(r,s)=>{
-  s.json({message:"welcome to the server"})
-})
 // Start the server
 async function startServer() {
   try {
