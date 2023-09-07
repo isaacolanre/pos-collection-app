@@ -23,7 +23,7 @@ app.get("/",(r,s)=>{
 // Start the server
 async function startServer() {
   try {
-    console.clear()
+    // console.clear()
     await sequelize.sync({
       // force:true
     });

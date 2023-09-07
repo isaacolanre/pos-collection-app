@@ -1,8 +1,9 @@
 import express from "express";
 import {createPayment, getAllPayment, getPaymentByID, deletePaymentByID, updatePayment} from "../controller/PaymentController"
-
+import Auth from '../middleWare/auth'
 const router = express.Router();
 
+router.use(Auth)
 router.post("/create-payment", createPayment);
 router.get("/get-all-payments", getAllPayment);
 router.post("/get-payment-by-id", getPaymentByID);
