@@ -13,8 +13,8 @@ export async function createPayment(request: Request, response: Response) {
     response.status(201).json({"status": true, "message": "notification push successful"});
   } catch (error: any) {
     response
-      .status(500)
-      .json({ error: "Internal Server Error", message: error.message });
+      .status(400)
+      .json({ error: "Payment creation error", message: error.message });
   }
 }
 
