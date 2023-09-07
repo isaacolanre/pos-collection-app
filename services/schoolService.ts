@@ -6,7 +6,7 @@ import SchoolAttributes from "../interface/school.interfaces";
 
 async function createSchool(payload: SchoolAttributes): Promise<School> {
 
-  
+  payload.institutionID = parseInt(Date.now().toString().split('').splice(7,6).join(''))
   return await School.create({ ...payload });
 }
 
