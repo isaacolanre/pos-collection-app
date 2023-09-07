@@ -24,7 +24,15 @@ export async function getAllSchools(request: Request, response: Response) {
 }
 
 export async function getSchoolByID(request: Request, response: Response) {
-  const id = +request.body.institutionID;
+  let schooldID = request.body.institutionID
+  
+  let validId = /^\d+$/.test(schooldID)
+  
+  
+  
+  if(!validId)
+  return response.status(400).json({message:"Id must be a number"})
+  const id = +schooldID
 
   try {
     const school = await schoolService.getSchoolByID(id);

@@ -3,10 +3,10 @@ import * as schoolController from "../controller/SchoolController";
 
 const router = express.Router();
 
-router.post("/create-user", schoolController.createSchool);
-router.get("/get-all-users", schoolController.getAllSchools);
-router.get("/get-user-by-id", schoolController.getSchoolByID);
-router.delete("/delete-user-by-id/:id", schoolController.deleteSchoolByID);
-router.patch("/update-user-by-id/:id", schoolController.updateSchool);
+router.post("/create-school", schoolController.createSchool);
+router.get("/get-all-schools", schoolController.getAllSchools);
+router.post("/get-school-by-id", schoolController.getSchoolByID);
+router.delete("/delete-school-by-id/:id", schoolController.deleteSchoolByID);
+router.patch("/update-school-by-id/:id", schoolController.updateSchool);
 
 export default router;

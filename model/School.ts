@@ -20,6 +20,7 @@ School.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+      
     },
     institutionName: {
       type: DataTypes.STRING,

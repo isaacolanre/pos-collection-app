@@ -5,8 +5,8 @@ import SchoolAttributes from "../interface/school.interfaces";
 
 
 async function createSchool(payload: SchoolAttributes): Promise<School> {
-  // const hashedPassword = await bcrypt.hash(payload.password, 10);
-  // payload.password = hashedPassword;
+
+  
   return await School.create({ ...payload });
 }
 
@@ -17,8 +17,11 @@ async function getAllSchool(): Promise<School[]> {
 
 // get School by id
 async function getSchoolByID(id: number): Promise<School | null> {
-  console.log(id);
-  return await School.findByPk(id);
+  
+
+  let school =  await School.findByPk(id);
+
+  return school;
 }
 
 // delete School by id

@@ -24,7 +24,9 @@ app.get("/",(r,s)=>{
 async function startServer() {
   try {
     console.clear()
-    await sequelize.sync({});
+    await sequelize.sync({
+      // force:true
+    });
     console.log("Database connected successfully");
 
     app.listen(port, () => {
