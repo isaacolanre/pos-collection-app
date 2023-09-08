@@ -18,8 +18,13 @@ async function createPayment(payload: PaymentAttributes): Promise<Payment | any>
   }
 }
 // get all users
-async function getAllPayment(): Promise<Payment[]> {
-  return await Payment.findAll();
+async function getAllPayment(page: number, perPage: number): Promise<{ payments: Payment[]; totalItems: number }> {
+  const offset = (page - 1) * perPage;
+  const { rows: payments, count: totalItems } = await Payment.findAndCountAll({
+    offset,
+    limit: perPage,
+  });
+  return { payments, totalItems };
 }
 
 // get user by id

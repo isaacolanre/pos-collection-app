@@ -18,12 +18,20 @@ export async function createPayment(request: Request, response: Response) {
   }
 }
 
-export async function getAllPayment(request: Request, response: Response) {
+export async function getAllPayment(request: Request|any, response: Response) {
   try {
-    const allPayments = await paymentService.getAllPayment();
+    const page = parseInt(request.query.page) || 1;
+    const perPage = 30;
+    const offset =page>1? (page - 1) * perPage:1;
+
+    console.log(offset,perPage);
+    
+
+
+    const allPayments = await paymentService.getAllPayment(offset, perPage);
     response.status(200).json(allPayments);
-  } catch (error) {
-    response.status(500).json({ error: "Internal Server Error" });
+  } catch (error:any) {
+    response.status(500).json({ error: "Internal Server Error", message:error.message });
   }
 }
 
