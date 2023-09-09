@@ -1,4 +1,4 @@
-import institutionDataAttributes from "./institutionData.interfaces";
+import institutionDataAttributes from './institutionData.interfaces';
 
 interface PaymentAttributes {
   RRN?: string;
@@ -21,6 +21,7 @@ interface PaymentAttributes {
   transactionDateTime: string;
   transactionTime: string;
   transactionType: string;
+  createdAt?: string;
 }
 
 export default PaymentAttributes;
