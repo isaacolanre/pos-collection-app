@@ -7,7 +7,7 @@ async function createPayment(
 ): Promise<Payment | any> {
   try {
     const newPayment = await Payment.create({ ...payload });
-    console.log('New Payment:', newPayment.toJSON());
+    // console.log('New Payment:', newPayment.toJSON());
     return newPayment;
   } catch (error) {
     if (error instanceof UniqueConstraintError) {
@@ -27,6 +27,8 @@ async function getAllPayment(
     offset,
     limit: perPage,
   });
+  console.log(payments);
+
   return { payments, totalItems };
 }
 // get all payment for a school
@@ -36,8 +38,6 @@ async function getAllSchoolPayment(
   page: number,
   perPage: number
 ): Promise<{ payments: Payment[]; totalItems: number }> {
-  console.log(id);
-
   const offset = (page - 1) * perPage;
   let allpayments: Payment[];
   let count: number;

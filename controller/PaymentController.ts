@@ -31,6 +31,8 @@ export async function getAllPayment(
     console.log(offset, perPage);
 
     const allPayments = await paymentService.getAllPayment(offset, perPage);
+    // console.log(allPayments.payments);
+
     response.status(200).json(allPayments);
   } catch (error: any) {
     response

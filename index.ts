@@ -1,9 +1,9 @@
-import express from "express";
-import morgan from "morgan";
-import dotenv from "dotenv";
-import sequelize from "./config/database";
-import router from "./routes/school.routes";
-import paymentRouter from "./routes/payment.routes";
+import express from 'express';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+import sequelize from './config/database';
+import router from './routes/school.routes';
+import paymentRouter from './routes/payment.routes';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -13,7 +13,7 @@ const port = process.env.PORT || 4401;
 
 // Middleware
 app.use(express.json());
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 app.use(router);
 app.use(paymentRouter);
 
@@ -22,12 +22,12 @@ async function startServer() {
   try {
     // console.clear()
     await sequelize.sync({
-      // force:true
+      // force: true,
     });
-    console.log("Database connected successfully");
+    console.log('Database connected successfully');
 
     app.listen(port, () => {
-      console.log("Server started");
+      console.log('Server started http://localhost:' + port);
     });
   } catch (err) {
     console.error(err);
