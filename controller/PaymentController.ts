@@ -28,7 +28,7 @@ export async function getAllPayment(
     const perPage = 30;
     const offset = page > 1 ? (page - 1) * perPage : 1;
 
-    console.log(offset, perPage);
+    // console.log(offset, perPage);
 
     const allPayments = await paymentService.getAllPayment(offset, perPage);
     // console.log(allPayments.payments);

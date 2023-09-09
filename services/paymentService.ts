@@ -27,7 +27,6 @@ async function getAllPayment(
     offset,
     limit: perPage,
   });
-  console.log(payments);
 
   return { payments, totalItems };
 }

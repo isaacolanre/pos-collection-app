@@ -1,14 +1,14 @@
-import { DataTypes, Model, Optional } from "sequelize";
-import institutionDataAttributes from "../interface/institutionData.interfaces";
-import sequelize from "../config/database";
-import PaymentAttributes from "../interface/payment.interfaces";
+import { DataTypes, Model, Optional } from 'sequelize';
+import institutionDataAttributes from '../interface/institutionData.interfaces';
+import sequelize from '../config/database';
+import PaymentAttributes from '../interface/payment.interfaces';
 
-interface PaymentCreationAttributes extends Optional<PaymentAttributes, "RRN"> {}
+interface PaymentCreationAttributes
+  extends Optional<PaymentAttributes, 'RRN'> {}
 
 class Payment
   extends Model<PaymentAttributes, PaymentCreationAttributes>
   implements PaymentAttributes
-
 {
   public RRN!: string;
   public STAN!: string;
@@ -22,7 +22,7 @@ class Payment
   public receiptNumber!: string;
   public respCode!: string;
   public responseMessage!: string;
-  public status!: boolean;
+  public status: boolean = false; // Provide an initializer with a default value
   public successResponse!: string;
   public systemTraceAuditNo!: string;
   public terminalId!: string;
@@ -37,7 +37,7 @@ Payment.init(
     RRN: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     STAN: {
       type: DataTypes.STRING,
@@ -84,7 +84,7 @@ Payment.init(
       allowNull: false,
     },
     status: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     successResponse: {
@@ -114,11 +114,11 @@ Payment.init(
     transactionType: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
   },
   {
     sequelize,
-    modelName: "Payment_model",
+    modelName: 'Payment_model',
   }
 );
 
