@@ -22,7 +22,7 @@ async function startServer() {
   try {
     // console.clear()
     await sequelize.sync({
-      // force: true,
+      force: true,
     });
     console.log('Database connected successfully');
 
