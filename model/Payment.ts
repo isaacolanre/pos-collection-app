@@ -23,7 +23,7 @@ class Payment
   public receiptNumber!: string;
   public respCode!: string;
   public responseMessage!: string;
-  public status!: boolean; // Provide an initializer with a default value
+  public status!: boolean; 
   public successResponse!: string;
   public systemTraceAuditNo!: string;
   public terminalId!: string;
