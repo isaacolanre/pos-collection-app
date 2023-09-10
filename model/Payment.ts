@@ -10,6 +10,7 @@ class Payment
   extends Model<PaymentAttributes, PaymentCreationAttributes>
   implements PaymentAttributes
 {
+  public transID!: string;
   public RRN!: string;
   public STAN!: string;
   public acquiringInstitutionIdCode!: string;
@@ -34,10 +35,15 @@ class Payment
 
 Payment.init(
   {
+    transID: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
     RRN: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true,
     },
     STAN: {
       type: DataTypes.STRING,

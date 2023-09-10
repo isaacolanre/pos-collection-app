@@ -1,6 +1,7 @@
 import institutionDataAttributes from './institutionData.interfaces';
 
 interface PaymentAttributes {
+  transID?: string;
   RRN?: string;
   STAN: string;
   acquiringInstitutionIdCode: string;
