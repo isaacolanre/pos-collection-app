@@ -10,6 +10,6 @@ router.delete("/delete-school-by-id/:id", schoolController.deleteSchoolByID);
 router.patch("/update-school-by-id/:id", schoolController.updateSchool);
 
 router.get("/",(r,s)=>{
-    s.json({message:"welcome to the server"})
+    s.json({message:"Welcome to E-Top server!"})
   })
 export default router;
