@@ -60,6 +60,9 @@ export async function getAllPaymentForASchool(
       offset,
       perPage
     );
+
+    allPayments.payments.reverse();
+
     return response.status(200).json(allPayments);
   } catch (error: any) {
     response
