@@ -2,6 +2,8 @@ import { UniqueConstraintError, Op } from 'sequelize';
 import Payment from '../model/Payment';
 import PaymentAttributes from '../interface/payment.interfaces';
 
+
+
 async function createPayment(
   payload: PaymentAttributes
 ): Promise<Payment | any> {
@@ -17,6 +19,7 @@ async function createPayment(
     }
   }
 }
+
 // get all users
 async function getAllPayment(
   page: number,

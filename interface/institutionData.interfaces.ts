@@ -1,17 +1,21 @@
 interface institutionDataAttributes {
-    institutionData: string;
-    accountType: string;
+  //  institutionData?: string;
+    accountType?: string;
     amount: string;
     email: string;
-    examinations: string;
+    examinations?: string;
     institutionID: string;
     institutionName: string;
-    level: string;
-    paymentPeriod: string;
-    paymentPurpose: string;
+    level?: string;
+    paymentPeriod?: string;
+    paymentPurpose?: string;
     phoneNumber: string;
-    studentClass: string;
+    studentClass?: string;
     studentFullName: string;
+    studentRegistrationNumber?: string;
+    academicSession?: string;
+    school?: string;
+    department?: string;
     tid: string;
   }
   
