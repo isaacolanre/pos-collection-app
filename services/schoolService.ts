@@ -34,47 +34,53 @@ async function getSchoolByID(id: number): Promise<any> {
     institutionMenu: [] as { inputName: string, dataType: string, description: string, value?:string[]}[],
 }
 
-if (school?.institutionMenu.email){
-  result.institutionMenu.push( {
-    inputName: "email",
-    dataType: "string",
-    description: "Please enter email",
+// if (school?.institutionMenu.email){
+//   result.institutionMenu.push( {
+//     inputName: "email",
+//     dataType: "string",
+//     description: "Please enter email",
 
-},);
-}
-if (school?.institutionMenu.level){
-  result.institutionMenu.push( {
-    inputName: "level",
-    dataType: "string",
-    description: "Please enter level",
-},);
-}if (school?.institutionMenu.amount){
-  result.institutionMenu.push( {
-    inputName: "amount",
-    dataType: "string",
-    description: "Please enter amount",
-},);
-}if (school?.institutionMenu.school){
-  result.institutionMenu.push( {
-    inputName: "school",
-    dataType: "list",
-    description: "Please select school",
-    value:["Sharia and Civil Law","Islamic and Qur'anic Studies","Secondary Education, Art & Social Sciences","Secondary Education, Languages", "Sciences", "Early Childhood and Primary Education"]
-},);
-}if (school?.institutionMenu.department){
+// },);
+// }
+// if (school?.institutionMenu.level){
+//   result.institutionMenu.push( {
+//     inputName: "level",
+//     dataType: "string",
+//     description: "Please enter level",
+// },);
+// }if (school?.institutionMenu.amount){
+//   result.institutionMenu.push( {
+//     inputName: "amount",
+//     dataType: "number",
+//     description: "Please enter amount",
+// },);
+// }
+// if (school?.institutionMenu.school){
+//   result.institutionMenu.push( {
+//     inputName: "school",
+//     dataType: "list",
+//     description: "Please select school",
+//     value:["Sharia and Civil Law","Islamic and Qur'anic Studies","Secondary Education, Art & Social Sciences","Secondary Education, Languages", "Sciences", "Early Childhood and Primary Education"]
+// },);
+// }
+
+if (school?.institutionMenu.department){
   result.institutionMenu.push( {
     inputName: "department",
     dataType: "list",
     description: "Please select department",
     value: ["Department of Shari'a and Civil Law", "Department of Law", "Department of Qur'anic Studies", "Department of Hadith","Department of Islamic Studies","Department of Economic", "Department of History", "Department of Geography", "Department of Social Studies", "Department of Political Science","Department of Arabic Medium","Department of Arabic","Department of English","Department of Hausa","Department of Computer Sciences ","Department of Physical and Health Education" ]
 },);
-}if (school?.institutionMenu.accountType){
-  result.institutionMenu.push( {
-    inputName: "accountType",
-    dataType: "string",
-    description: "Please enter account type",
-},);
-}if (school?.institutionMenu.phoneNumber){
+}
+// if (school?.institutionMenu.accountType){
+//   result.institutionMenu.push( {
+//     inputName: "accountType",
+//     dataType: "string",
+//     description: "Please enter account type",
+// },);
+// }
+
+if (school?.institutionMenu.phoneNumber){
   result.institutionMenu.push( {
     inputName: "phoneNumber",
     dataType: "number",
@@ -86,56 +92,63 @@ if (school?.institutionMenu.level){
     dataType: "string",
     description: "Please enter examination",
 },);
-}if (school?.institutionMenu.studentClass){
-  result.institutionMenu.push( {
-    inputName: "studentClass",
-    dataType: "string",
-    description: "Please enter student class ",
-},);
-}if (school?.institutionMenu.institutionID){
-  result.institutionMenu.push( {
-    inputName: "institutionID",
-    dataType: "string",
-    description: "Please enter Institution ID",
-},);
-}if (school?.institutionMenu.paymentPeriod){
-  result.institutionMenu.push( {
-    inputName: "paymentPeriod",
-    dataType: "string",
-    description: "Please enter payment period",
-},);
-}if (school?.institutionMenu.paymentPurpose){
+}
+
+// if (school?.institutionMenu.studentClass){
+//   result.institutionMenu.push( {
+//     inputName: "studentClass",
+//     dataType: "string",
+//     description: "Please enter student class ",
+// },);
+// }
+// if (school?.institutionMenu.institutionID){
+//   result.institutionMenu.push( {
+//     inputName: "institutionID",
+//     dataType: "string",
+//     description: "Please enter Institution ID",
+// },);
+// }
+// if (school?.institutionMenu.paymentPeriod){
+//   result.institutionMenu.push( {
+//     inputName: "paymentPeriod",
+//     dataType: "string",
+//     description: "Please enter payment period",
+// },);
+// }
+
+if (school?.institutionMenu.paymentPurpose){
   result.institutionMenu.push( {
     inputName: "paymentPurpose",
     dataType: "list",
-    description: "Please choose pupose",
+    description: "Please select purpose of payment",
     value: ["clearance", "Transcript", "Acceptance fee","Bye Law", "Reissuance of Result",  "Departmental", "Medicals"]
 },);
-}if (school?.institutionMenu.academicSession){
-  result.institutionMenu.push( {
-    inputName: "academicSession",
-    dataType: "string",
-    description: "Please enter academic session",
-},);
-}if (school?.institutionMenu.institutionName){
-  result.institutionMenu.push( {
-    inputName: "institutionName",
-    dataType: "string",
-    description: "Please enter instituition name",
-},);
-}if (school?.institutionMenu.studentFullName){
-  result.institutionMenu.push( {
-    inputName: "studentFullName",
-    dataType: "string",
-    description: "Please enter your name",
-},);
-}if (school?.institutionMenu.studentRegistrationNumber){
-  result.institutionMenu.push( {
-    inputName: "studentRegistrationNumber",
-    dataType: "string",
-    description: "Please enter registration Number",
-},);
 }
+// if (school?.institutionMenu.academicSession){
+//   result.institutionMenu.push( {
+//     inputName: "academicSession",
+//     dataType: "string",
+//     description: "Please enter academic session",
+// },);
+// }if (school?.institutionMenu.institutionName){
+//   result.institutionMenu.push( {
+//     inputName: "institutionName",
+//     dataType: "string",
+//     description: "Please enter instituition name",
+// },);
+// }if (school?.institutionMenu.studentFullName){
+//   result.institutionMenu.push( {
+//     inputName: "studentFullName",
+//     dataType: "string",
+//     description: "Please enter your name",
+// },);
+// }if (school?.institutionMenu.studentRegistrationNumber){
+//   result.institutionMenu.push( {
+//     inputName: "studentRegistrationNumber",
+//     dataType: "string",
+//     description: "Please enter registration Number",
+// },);
+// }
 
 
 
