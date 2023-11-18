@@ -48,13 +48,15 @@ async function getSchoolByID(id: number): Promise<any> {
 //     dataType: "string",
 //     description: "Please enter level",
 // },);
-// }if (school?.institutionMenu.amount){
-//   result.institutionMenu.push( {
-//     inputName: "amount",
-//     dataType: "number",
-//     description: "Please enter amount",
-// },);
 // }
+
+if (school?.institutionMenu.amount){
+  result.institutionMenu.push( {
+    inputName: "amount",
+    dataType: "number",
+    description: "Please enter amount",
+},);
+}
 // if (school?.institutionMenu.school){
 //   result.institutionMenu.push( {
 //     inputName: "school",
