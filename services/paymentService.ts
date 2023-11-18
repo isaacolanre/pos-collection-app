@@ -2,8 +2,6 @@ import { UniqueConstraintError, Op } from 'sequelize';
 import Payment from '../model/Payment';
 import PaymentAttributes from '../interface/payment.interfaces';
 
-
-
 async function createPayment(
   payload: PaymentAttributes
 ): Promise<Payment | any> {
@@ -103,6 +101,61 @@ async function updatePayment(
   return user.update({ ...payload });
 }
 
+// async function fetchTableStructure(): Promise<any> {
+//   const response = await Payment.describe();
+//   const result = response["institutionData"]
+
+//   return result;
+// }
+
+
+
+async function fetchTableStructure(): Promise<any> {
+  try {
+    const tableStructure = await Payment.describe();
+
+    const formattedStructure = Object.entries(tableStructure).map(
+      ([columnName, columnType]) => {
+        let type: string | Record<string, string> = "unknown";
+
+        // Check if the column type is 'jsonb' and assign the nested interface
+        if (columnType.type === "JSONB" && columnName === "institutionData") {
+          type = {
+            accountType: "string",
+            amount: "string",
+            email: "string",
+            examinations: "string",
+            institutionID: "string",
+            institutionName: "string",
+            level: "string",
+            paymentPeriod: "string",
+            paymentPurpose: "string",
+            phoneNumber: "string",
+            studentClass: "string",
+            studentFullName: "string",
+            studentRegistrationNumber: "string",
+            academicSession: "string",
+            school: "string",
+            department: "string",
+            tid: "string",
+          };
+        } else {
+          // Otherwise, just assign the column type
+          type = columnType.type as string; // Assuming columnType.type is a string
+        }
+
+        return { [columnName]: type };
+      }
+    );
+
+    console.log(formattedStructure);
+    return formattedStructure[7];
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
 export {
   createPayment,
   getAllPayment,
@@ -110,4 +163,5 @@ export {
   deletePaymentByID,
   updatePayment,
   getAllSchoolPayment,
+  fetchTableStructure,
 };

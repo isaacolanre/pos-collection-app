@@ -115,3 +115,15 @@ export async function updatePayment(request: Request, response: Response) {
     response.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+export async function fetchTableStructure(
+  request: Request,
+  response: Response
+) {
+  try {
+    const tableStructure = await paymentService.fetchTableStructure();
+    response.status(200).json(tableStructure);
+  } catch (error) {
+    response.status(500).json({ error: "Internal Server Error" });
+  }
+}

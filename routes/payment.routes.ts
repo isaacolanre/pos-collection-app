@@ -6,6 +6,7 @@ import {
   deletePaymentByID,
   updatePayment,
   getAllPaymentForASchool,
+  fetchTableStructure,
 } from '../controller/PaymentController';
 import Auth from '../middleWare/auth';
 const router = express.Router();
@@ -17,5 +18,6 @@ router.post('/get-payment-by-id', getPaymentByID);
 router.get('/get-payment-by-institution-id/:id', getAllPaymentForASchool);
 router.delete('/delete-payment-by-id/:id', deletePaymentByID);
 router.patch('/update-payment-by-id/:id', updatePayment);
+router.get('/table', fetchTableStructure);
 
 export default router;
