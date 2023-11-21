@@ -32,34 +32,36 @@ async function getAllPayment(
   return { payments, totalItems };
 }
 // get all payment for a school
+// get all payment for a school
 async function getAllSchoolPayment(
   id: number | string,
   eod: string,
   page: number,
   perPage: number
-): Promise<{ payments: Payment[]; totalItems: number }> {
+): Promise<{ payments: Payment[]; totalItems: number; institutionLogo: string }> {
   const offset = (page - 1) * perPage;
   let allpayments: Payment[];
   let count: number;
-
+  let institutionLogo: string;
   if (!eod) {
-    console.log('here we are'), id;
+    console.log("here we are"), id;
 
     // Use '===' for strict equality comparison
     const payment = await Payment.findAndCountAll({
       where: {
-        'institutionData.institutionID': id,
+        "institutionData.institutionID": id,
       },
       offset,
       limit: perPage,
     });
 
     allpayments = payment.rows;
+    institutionLogo = payment.rows[0].institutionData.institutionLogo;
     count = payment.count;
   } else {
     const payment = await Payment.findAndCountAll({
       where: {
-        'institutionData.institutionID': id,
+        "institutionData.institutionID": id,
         createdAt: {
           [Op.between]: [`${eod} 00:00:00`, `${eod} 23:59:59`],
         },
@@ -68,10 +70,12 @@ async function getAllSchoolPayment(
       limit: perPage,
     });
     allpayments = payment.rows;
+    institutionLogo = payment.rows[0].institutionData.institutionLogo;
     count = payment.count;
   }
-  return { payments: allpayments, totalItems: count };
+  return { payments: allpayments, totalItems: count, institutionLogo: institutionLogo };
 }
+
 
 // get user by id
 async function getPaymentByID(id: number): Promise<Payment | null> {

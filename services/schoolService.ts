@@ -57,6 +57,7 @@ if (school?.institutionMenu.amount){
     description: "Please enter amount",
 },);
 }
+
 // if (school?.institutionMenu.school){
 //   result.institutionMenu.push( {
 //     inputName: "school",
