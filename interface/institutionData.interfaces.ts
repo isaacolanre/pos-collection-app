@@ -6,6 +6,7 @@ interface institutionDataAttributes {
     examinations?: string;
     institutionID: string;
     institutionName: string;
+    institutionLogo: string;
     level?: string;
     paymentPeriod?: string;
     paymentPurpose?: string;

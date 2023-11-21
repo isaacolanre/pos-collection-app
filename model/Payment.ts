@@ -1,10 +1,10 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import institutionDataAttributes from '../interface/institutionData.interfaces';
-import sequelize from '../config/database';
-import PaymentAttributes from '../interface/payment.interfaces';
+import { DataTypes, Model, Optional } from "sequelize";
+import institutionDataAttributes from "../interface/institutionData.interfaces";
+import sequelize from "../config/database";
+import PaymentAttributes from "../interface/payment.interfaces";
 
 interface PaymentCreationAttributes
-  extends Optional<PaymentAttributes, 'RRN'> {}
+  extends Optional<PaymentAttributes, "RRN"> {}
 
 class Payment
   extends Model<PaymentAttributes, PaymentCreationAttributes>
@@ -23,7 +23,7 @@ class Payment
   public receiptNumber!: string;
   public respCode!: string;
   public responseMessage!: string;
-  public status!: boolean; 
+  public status!: boolean;
   public successResponse!: string;
   public systemTraceAuditNo!: string;
   public terminalId!: string;
@@ -124,7 +124,7 @@ Payment.init(
   },
   {
     sequelize,
-    modelName: 'Payment_model',
+    modelName: "Payment_model",
   }
 );
 

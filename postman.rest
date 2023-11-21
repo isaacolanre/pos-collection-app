@@ -1,0 +1,39 @@
+GET http://localhost:5699/get-all-schools
+###
+GET http://localhost:5699/get-school-by-id/890327
+###
+POST http://localhost:5699/get-school-by-id
+Content-Type: application/json
+
+{
+    "institutionID": 890327
+}
+
+###
+POST http://localhost:5699/create-school
+Content-Type: application/json
+
+{
+    "institutionName": "PT. PLN (Persero)",
+    "message": "Pembayaran tagihan listrik",
+    "tID":"1234567890",
+    "institutionData":{
+                "accountType": true,
+                "amount": false,
+                "email": true,
+                "examinations": false,
+                "institutionName": true,
+                "level": false,
+                "paymentPeriod": true,
+                "paymentPurpose": false,
+                "phoneNumber": true,
+                "studentClass": false,
+                "studentFullName": true,
+                "studentRegistrationNumber": false,
+                "academicSession": true,
+                "school": false,
+                "department": true,
+                "tid": false
+                }
+
+}

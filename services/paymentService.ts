@@ -1,8 +1,7 @@
-import { UniqueConstraintError, Op } from 'sequelize';
-import Payment from '../model/Payment';
-import PaymentAttributes from '../interface/payment.interfaces';
-
-
+import { UniqueConstraintError, Op } from "sequelize";
+import Payment from "../model/Payment";
+import PaymentAttributes from "../interface/payment.interfaces";
+import institutionDataAttributes from "../interface/institutionData.interfaces";
 
 async function createPayment(
   payload: PaymentAttributes
@@ -13,9 +12,9 @@ async function createPayment(
     return newPayment;
   } catch (error) {
     if (error instanceof UniqueConstraintError) {
-      throw new Error('Unique key constraint violated:');
+      throw new Error("Unique key constraint violated:");
     } else {
-      return { error: 'Payment creation failed' };
+      return { error: "Payment creation failed" };
     }
   }
 }
@@ -39,29 +38,30 @@ async function getAllSchoolPayment(
   eod: string,
   page: number,
   perPage: number
-): Promise<{ payments: Payment[]; totalItems: number }> {
+): Promise<{ payments: Payment[]; totalItems: number; institutionLogo: string }> {
   const offset = (page - 1) * perPage;
   let allpayments: Payment[];
   let count: number;
-
+  let institutionLogo: string;
   if (!eod) {
-    console.log('here we are'), id;
+    console.log("here we are"), id;
 
     // Use '===' for strict equality comparison
     const payment = await Payment.findAndCountAll({
       where: {
-        'institutionData.institutionID': id,
+        "institutionData.institutionID": id,
       },
       offset,
       limit: perPage,
     });
 
     allpayments = payment.rows;
+    institutionLogo = payment.rows[0].institutionData.institutionLogo;
     count = payment.count;
   } else {
     const payment = await Payment.findAndCountAll({
       where: {
-        'institutionData.institutionID': id,
+        "institutionData.institutionID": id,
         createdAt: {
           [Op.between]: [`${eod} 00:00:00`, `${eod} 23:59:59`],
         },
@@ -70,9 +70,10 @@ async function getAllSchoolPayment(
       limit: perPage,
     });
     allpayments = payment.rows;
+    institutionLogo = payment.rows[0].institutionData.institutionLogo;
     count = payment.count;
   }
-  return { payments: allpayments, totalItems: count };
+  return { payments: allpayments, totalItems: count, institutionLogo: institutionLogo };
 }
 
 // get user by id
@@ -85,10 +86,10 @@ async function getPaymentByID(id: number): Promise<Payment | null> {
 async function deletePaymentByID(id: number): Promise<string> {
   const payment = await getPaymentByID(id);
   if (!payment) {
-    return 'User not found';
+    return "User not found";
   }
   await payment.destroy();
-  return 'User deleted!';
+  return "User deleted!";
 }
 
 // update user by id
@@ -98,11 +99,85 @@ async function updatePayment(
 ): Promise<Payment | string> {
   const user = await getPaymentByID(id);
   if (!user) {
-    return 'User is not found';
+    return "User is not found";
   }
   return user.update({ ...payload });
 }
 
+// Fetch the table structure
+async function fetchTableStructure(): Promise<any> {
+  try {
+    const tableStructure = await Payment.describe();
+
+    const formattedStructure = Object.entries(tableStructure).map(
+      ([columnName, columnType]) => {
+        let type: string | Record<string, string> = "unknown";
+
+        // Check if the column type is 'jsonb' and assign the nested interface
+        if (columnType.type === "JSONB" && columnName === "institutionData") {
+          type = {
+            accountType: "string",
+            amount: "string",
+            email: "string",
+            examinations: "string",
+            institutionID: "string",
+            institutionName: "string",
+            level: "string",
+            paymentPeriod: "string",
+            paymentPurpose: "string",
+            phoneNumber: "string",
+            studentClass: "string",
+            studentFullName: "string",
+            studentRegistrationNumber: "string",
+            academicSession: "string",
+            school: "string",
+            department: "string",
+            tid: "string",
+          };
+        } else {
+          // Otherwise, just assign the column type
+          type = columnType.type as string; // Assuming columnType.type is a string
+        }
+
+        return { [columnName]: type };
+      }
+    );
+
+    // console.log(formattedStructure);
+    return formattedStructure;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
+// async function fetchTableStructure(): Promise<any> {
+//   try {
+//     const tableStructure: any = await Payment.describe();
+//     let result: any;
+
+//     for (const [key, value] of Object.entries(tableStructure)) {
+//       if (key  === "institutionData") {
+//         // delete tableStructure[key];
+//         result = value;
+//       }
+//     }
+//     return tableStructure;
+//   } catch (error) {
+//     console.error("Error:", error);
+//     throw error;
+//   }
+// }
+
+// // Call the function and handle the promise
+// fetchTableStructure()
+//   .then((structure) => {
+//     console.log(structure);
+//     // Do something with the table structure here
+//   })
+//   .catch((error) => {
+//     console.error("Error:", error);
+//   });
 export {
   createPayment,
   getAllPayment,
@@ -110,4 +185,5 @@ export {
   deletePaymentByID,
   updatePayment,
   getAllSchoolPayment,
+  fetchTableStructure,
 };
